@@ -18,4 +18,4 @@ start_time = time.time()
 elapesed_time = time.time() - start_time
 
 print(x)  # x벡터 산출 (x가 tuple이기 때문. x[0]은 optimal인데 의미는 모르겠음)
-print(-c.T * x)  # 목적함수 값 산출 (여기서는 최대화였으므로 - 붙인거). numpy array를 바꾼다면 전치 없해야 함
+print(-c.T * x)  # 목적함수 값 산출 (여기서는 최대화였으므로 - 붙인거). numpy array를 바꾼다면 전치 없애야 함

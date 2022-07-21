@@ -14,7 +14,7 @@ h = matrix([1, 12, 12, 0, 0], tc="d")
 
 start_time = time.time()
 (status, x) = glpk.ilp(c, G.T, h, I=set([0, 1]))  # I=set([0,1])은 1번째 & 2번째 변수가 정수라는 뜻일
-# x=glpk.lp(c,G.T,h) # G와 h는 ineq (<=), A와 b는 eq에 대응, 단순 lb와 ub는 ineq에 포함시켜야 하는듯
+# x=glpk.lp(c,G.T,h) # G와 h는 ineq (<=), A와 b는 eq에 대응, 단순 lb와 ub는 ineq에 포함시켜야 함
 elapesed_time = time.time() - start_time
 
 print(x)  # x벡터 산출 (x가 tuple이기 때문. x[0]은 optimal인데 의미는 모르겠음)

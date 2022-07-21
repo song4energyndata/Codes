@@ -18,7 +18,7 @@ pvoutput = matrix(re_output[0:t, :1])
 wtoutput = matrix(re_output[0:t, 1:2])
 
 block_eye = spmatrix(1, range(t), range(t))  # t x t 단위행렬
-block_zeros = sparse(matrix(np.zeros((t, t))))  # t x t 영행렬. np.zeros 옆 괄호 2겹임에 주의
+block_zeros = sparse(matrix(np.zeros((t, t))))  # t x t 영행렬. np.zeros 옆 괄호 2겹임에 주의하기
 block_onevec = sparse(matrix(np.ones((t, 1))))  # t * 1 1벡터
 block_zerovec = sparse(matrix(np.zeros((t, 1))))  # t* 1 0벡터
 block_batt = sparse([[block_eye], [block_zerovec]]) - sparse(

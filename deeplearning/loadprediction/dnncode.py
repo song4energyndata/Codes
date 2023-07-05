@@ -31,11 +31,11 @@ def model_dnn():
         
 
 
-response_workday_summer_train = workday_summer_train[:,1].reshape(-1,1)/2000 # [0,1] 구간즈음에 들어오게 scaling해야 함, 그렇지 않고 원본 쓰면 제대로 fit 안되고 대표값 1개만 반환함
+response_workday_summer_train = workday_summer_train[:,1].reshape(-1,1)/1000 # [0,1] 구간즈음에 들어오게 scaling해야 함, 그렇지 않고 원본 쓰면 제대로 fit 안되고 대표값 1개만 반환함
 features_workday_summer_train = workday_summer_train[:,2:]
 hourindex_workday_summer_train = workday_summer_train[:,0].reshape(-1,1) 
 
-response_workday_summer_test = workday_summer_test[:,1].reshape(-1,1)/2000
+response_workday_summer_test = workday_summer_test[:,1].reshape(-1,1)/1000
 features_workday_summer_test = workday_summer_test[:,2:]
 hourindex_workday_summer_test = workday_summer_test[:,0].reshape(-1,1) 
 
@@ -50,11 +50,11 @@ y_pred_workday_summer = model_workday_summer.predict(features_workday_summer_tes
 
 
 
-response_workday_winter_train = workday_winter_train[:,1].reshape(-1,1)/2000 # [0,1] 구간즈음에 들어오게 scaling해야 함, 그렇지 않고 원본 쓰면 제대로 fit 안되고 대표값 1개만 반환함
+response_workday_winter_train = workday_winter_train[:,1].reshape(-1,1)/1000 # [0,1] 구간즈음에 들어오게 scaling해야 함, 그렇지 않고 원본 쓰면 제대로 fit 안되고 대표값 1개만 반환함
 features_workday_winter_train = workday_winter_train[:,2:]
 hourindex_workday_winter_train = workday_winter_train[:,0].reshape(-1,1) 
 
-response_workday_winter_test = workday_winter_test[:,1].reshape(-1,1)/2000
+response_workday_winter_test = workday_winter_test[:,1].reshape(-1,1)/1000
 features_workday_winter_test = workday_winter_test[:,2:]
 hourindex_workday_winter_test = workday_winter_test[:,0].reshape(-1,1) 
 
@@ -69,11 +69,11 @@ y_pred_workday_winter = model_workday_winter.predict(features_workday_winter_tes
 
 
 
-response_workday_springfall_train = workday_springfall_train[:,1].reshape(-1,1)/2000 # [0,1] 구간즈음에 들어오게 scaling해야 함, 그렇지 않고 원본 쓰면 제대로 fit 안되고 대표값 1개만 반환함
+response_workday_springfall_train = workday_springfall_train[:,1].reshape(-1,1)/1000 # [0,1] 구간즈음에 들어오게 scaling해야 함, 그렇지 않고 원본 쓰면 제대로 fit 안되고 대표값 1개만 반환함
 features_workday_springfall_train = workday_springfall_train[:,2:]
 hourindex_workday_springfall_train = workday_springfall_train[:,0].reshape(-1,1) 
 
-response_workday_springfall_test = workday_springfall_test[:,1].reshape(-1,1)/2000
+response_workday_springfall_test = workday_springfall_test[:,1].reshape(-1,1)/1000
 features_workday_springfall_test = workday_springfall_test[:,2:]
 hourindex_workday_springfall_test = workday_springfall_test[:,0].reshape(-1,1) 
 
@@ -88,11 +88,11 @@ y_pred_workday_springfall = model_workday_springfall.predict(features_workday_sp
 
 
 
-response_holiday_train = holiday_train[:,1].reshape(-1,1)/2000 # [0,1] 구간즈음에 들어오게 scaling해야 함, 그렇지 않고 원본 쓰면 제대로 fit 안되고 대표값 1개만 반환함
+response_holiday_train = holiday_train[:,1].reshape(-1,1)/1000 # [0,1] 구간즈음에 들어오게 scaling해야 함, 그렇지 않고 원본 쓰면 제대로 fit 안되고 대표값 1개만 반환함
 features_holiday_train = holiday_train[:,2:]
 hourindex_holiday_train = holiday_train[:,0].reshape(-1,1) 
 
-response_holiday_test = holiday_test[:,1].reshape(-1,1)/2000
+response_holiday_test = holiday_test[:,1].reshape(-1,1)/1000
 features_holiday_test = holiday_test[:,2:]
 hourindex_holiday_test = holiday_test[:,0].reshape(-1,1) 
 
@@ -127,8 +127,8 @@ for k in range(y_pred_workday_springfall.shape[0]):
 for k in range(y_pred_holiday.shape[0]):
     predictedpower[int(hourindex_holiday_test[k][0]-1)] = y_pred_holiday[k]    
     
-fittedpower = fittedpower*2000   
-predictedpower = predictedpower*2000   
+fittedpower = fittedpower*1000   
+predictedpower = predictedpower*1000   
 
 
 

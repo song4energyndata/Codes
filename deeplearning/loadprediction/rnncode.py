@@ -14,10 +14,10 @@ n_epochs = 1000
 optimizer = keras.optimizers.Adam(lr=0.001,beta_1=0.9,beta_2=0.999)
 
 
-response_train = data_train[:,0].reshape(1,-1) / 2000 # scaling
+response_train = data_train[:,0].reshape(1,-1) / 1000 # scaling
 features_train = data_train[:,1:].reshape(1,-1,37) # reshape 해 줘야 rnn코드가 돌아감
 
-response_test = data_test[:,0].reshape(1,-1) / 2000
+response_test = data_test[:,0].reshape(1,-1) / 1000
 features_test = data_test[:,1:].reshape(1,-1,37)
 
 
@@ -32,8 +32,8 @@ checkpoint_cb_rnn = keras.callbacks.ModelCheckpoint("./rnn.h5",monitor='loss',sa
 model_rnn.compile(loss="mse",optimizer=optimizer)
 history_rnn = model_rnn.fit(features_train,response_train,epochs=n_epochs,callbacks=[checkpoint_cb_rnn])
 
-y_fit = (model_rnn.predict(features_train) * 2000).reshape(-1)
-y_pred = (model_rnn.predict(features_test) * 2000).reshape(-1)
+y_fit = (model_rnn.predict(features_train) * 1000).reshape(-1)
+y_pred = (model_rnn.predict(features_test) * 1000).reshape(-1)
 
 
 

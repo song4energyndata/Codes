@@ -109,7 +109,7 @@ ax.fill_between(axis_x_onedim, p_pv[(starthour-1):(endhour-1)]*capa_pv, p_grid[(
 ax.fill_between(axis_x_onedim, p_grid[(starthour-1):(endhour-1)].reshape(-1)+p_pv[(starthour-1):(endhour-1)]*capa_pv, p_grid[(starthour-1):(endhour-1)].reshape(-1)+p_pv[(starthour-1):(endhour-1)]*capa_pv+p_disch[(starthour-1):(endhour-1)].reshape(-1), alpha=0.8, color='red', label="Battery discharge",linewidth=0)
 
 plt.xlim((starthour-1,endhour))
-plt.ylim((0,2500))
+plt.ylim((0,1000))
 plt.ylabel("Electricity use [kWh]",fontsize=14,font="Cambria")
 plt.grid(True)
 plt.legend(loc='lower center', bbox_to_anchor=(0.5,-0.3),ncol=4)

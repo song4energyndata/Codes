@@ -1,0 +1,10 @@
+pandas >= 1.4.1
+sqlite
+elasticsearch >= 7.15.2
+urllib
+bs4
+json
+time
+datetime
+os
+pathlib

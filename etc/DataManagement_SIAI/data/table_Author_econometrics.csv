@@ -1,0 +1,84 @@
+|Author|NumofBooks|Bestseller|NumofRatings_Bestseller
+0|Fumio Hayashi|1|Econometrics|108
+1|Joshua Angrist|1|Mostly Harmless Econometrics : An Empiricist's Companion|855
+2|Peter Kennedy|1|A Guide to Econometrics|291
+3|R Pedace|1|Econometrics For Dummies|50
+4|Jeffrey Wooldridge|2|Introduction to Econometrics : EMEA Edition|657
+5|Jeffrey M. Wooldridge|3|Econometric Analysis of Cross Section and Panel Data|146
+6|Chris Brooks|1|Introductory Econometrics for Finance|73
+7|Dominick Salvatore|2|Schaum's Outline of Statistics and Econometrics, Second Edition|69
+8|John Y. Campbell|1|The Econometrics of Financial Markets|52
+9|Christopher Dougherty|1|Introduction to Econometrics|55
+10|Badi H. Baltagi|3|A Companion to Econometric Analysis of Panel Data|2
+11|Damodar Gujarati|1|Econometrics by Example|56
+12|James Stock|1|Introduction to Econometrics, Global Edition|209
+13|R. Carter Hill|1|Principles of Econometrics|70
+14|Gary Koop|2|Bayesian Econometrics|15
+15|Florian Heiss|1|Using R for Introductory Econometrics|17
+16|Bruce Hansen|1|Econometrics|4
+17|Takeshi Amemiya|2|Advanced Econometrics|9
+18|Christian Kleiber|1|Applied Econometrics with R|13
+19|Daniel Brunner|1|Using Python for Introductory Econometrics|0
+20|M Verbeek|1|A Guide to Modern Econometrics 5th Edition|45
+21|Andrew Jones|1|Applied Econometrics for Health Economists : A Practical Guide|1
+22|Qi Li|1|Nonparametric Econometrics : Theory and Practice|4
+23|Tony Lancaster|1|Introduction to Modern Bayesian Econometrics|13
+24|Samuel Cameron|1|Econometrics|0
+25|Helmut Lutkepohl|1|Applied Time Series Econometrics|15
+26|William Greene|2|Econometric Analysis, Global Edition|343
+27|Arthur S. Goldberger|1|A Course in Econometrics|24
+28|John Stachurski|1|A Primer in Econometric Theory|5
+29|Dean Corbae|1|An Introduction to Mathematical Analysis for Economic Theory and Econometrics|8
+30|Humberto Barreto|1|Introductory Econometrics : Using Monte Carlo Simulation with Microsoft Excel|3
+31|G. S. Maddala|1|Introduction to Econometrics|28
+32|Christiaan Heij|1|Econometric Methods with Applications in Business and Economics|10
+33|Stan Hurn|1|Financial Econometric Modeling|0
+34|M. Hashem Pesaran|1|Time Series and Panel Data Econometrics|0
+35|Sergio J Rey|1|Modern Spatial Econometrics in Practice : A Guide to GeoDa, GeoDaSpace and PySAL|8
+36|Oliver Linton|1|Financial Econometrics : Models and Methods|1
+37|Vance Martin|1|Econometric Modelling with Time Series : Specification, Estimation and Testing|1
+38|Russell Davidson|1|Econometric Theory and Methods : International Edition|35
+39|James LeSage|1|Introduction to Spatial Econometrics|6
+40|Neeraj R Hatekar|1|Principles of Econometrics : An Introduction (Using R)|2
+41|Carol Alexander|1|Market Risk Analysis : Practical Financial Econometrics|16
+42|Herman J. Bierens|1|Introduction to the Mathematical and Statistical Foundations of Econometrics|0
+43|Yacine Ait-Sahalia|1|High-Frequency Financial Econometrics|0
+44|Daniel J. Henderson|1|Applied Nonparametric Econometrics|3
+45|Y Croissant|1|Panel Data Econometrics with R|1
+46|Constantin Colonescu|1|Using R for Principles of Econometrics|1
+47|Jianqing Fan|1|The Elements of Financial Econometrics|0
+48|W Enders|1|Applied Econometric Times Series 4e|88
+49|Peter Moffatt|1|Experimetrics : Econometrics for Experimental Economics|2
+50|Phoebus J. Dhrymes|1|Mathematics for Econometrics|0
+51|Joel Hasbrouck|1|Empirical Market Microstructure : The Institutions, Economics, and Econometrics of Securities Trading|34
+52|Edward Greenberg|1|Introduction to Bayesian Econometrics|8
+53|Kerry Patterson|1|An Introduction to Applied Econometrics : A Time Series Approach|11
+54|Christopher F. Baum|1|Environmental Econometrics Using Stata|1
+55|Tim Bollerslev|1|Volatility and Time Series Econometrics : Essays in Honor of Robert Engle|0
+56|G. M.P. Swann|1|Putting Econometrics in its Place : A New Direction in Applied Economics|3
+57|Christopher M. Bishop|1|Neural Networks for Pattern Recognition|166
+58|Stephen Bazen|1|Econometric Methods for Labour Economics|2
+59|Adrian Pagan|1|Nonparametric Econometrics|5
+60|J. Paul Elhorst|1|Spatial Econometrics : From Cross-Sectional Data to Spatial Panels|2
+61|Michael Bailey|1|Real Econometrics : The Right Tools to Answer Important Questions|10
+62|Chung-ki Min|1|Applied Econometrics : A Practical Guide|1
+63|Svetlozar T. Rachev|1|Financial Econometrics : From Basics to Advanced Modeling Techniques|6
+64|Chandan Mukherjee|1|Econometrics and Data Analysis for Developing Countries|1
+65|Ragnar Nymoen|1|Dynamic Econometrics For Empirical Macroeconomic Modelling|0
+66|Santiago A Mendez|1|Econometrics : New Research|0
+67|K H Erickson|1|Econometrics : A Simple Introduction|0
+68|K. Nirmal Ravi Kumar|1|Econometrics|0
+69|Joshua Chan|1|Bayesian Econometric Methods|0
+70|P. J. Dhrymes|1|Econometrics : Statistical Foundations and Applications|0
+71|Jan Tinbergen|1|Econometrics|4
+72|John Eatwell|1|Econometrics|0
+73|Gerhard Tintner|1|Econometrics|0
+74|Tara Prasad Bhusal|1|Econometrics|0
+75|Franco Peracchi|1|Econometrics|1
+76|Peter Schmidt|1|Econometrics|0
+77|Charles B Moss|1|Mathematical Statistics for Applied Econometrics|1
+78|Genevieve Briand|1|Using Excel for Principles of Econometrics|3
+79|John Geweke|2|The Oxford Handbook of Bayesian Econometrics|1
+80|Ibrahim Ahamada|1|Non-Parametric Econometrics|0
+81|JR Magnus|1|Matrix Differential Calculus with Applications in Statistics & Econometrics Rev|9
+82|Jeffrey S. Racine|1|An Introduction to the Advanced Theory and Practice of Nonparametric Econometrics : A Replicable Approach Using R|0

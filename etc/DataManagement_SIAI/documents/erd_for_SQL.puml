@@ -1,0 +1,47 @@
+@startuml Entity Relationship Diagram
+
+/'
+Entity Relationship Diagram
+http://wiki.plantuml.net/site/ie-diagram
+'/
+
+'hide the spot
+hide circle
+hide empty members
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity "Booksinfo_searchword" as e01 {
+  *ISBN_13 (Primary Key) : text
+  --
+  *Title : text
+  *Author (Foreign Key): text
+  *Publisher (Foreign Key): text
+  *Rating : numeric
+  *NumofRatings : integer
+  *PublicationDate : date
+  *Price_KRW : integer
+  *PageNum : integer
+}
+
+entity "Authors_searchword" as e02 {
+  *Author (Primary Key) : text
+  --
+  *NumofBooks : integer
+  *Bestseller : text
+  *NumofRatings_Bestseller : integer
+}
+
+entity "Publishers_searchword" as e03 {
+  *Publisher (Primary Key) : text
+  --
+  *NumofBooks : integer
+  *Bestseller : text
+  *NumofRatings_Bestseller : integer
+}
+
+e01 }|..|| e02
+e01 }|..|| e03
+
+@enduml

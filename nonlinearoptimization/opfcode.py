@@ -90,8 +90,8 @@ nonlcon = NonlinearConstraint(nonlconfun, np.zeros((n_bus*2,)), np.zeros((n_bus*
 
 sol = minimize(objfun,initialpoint,bounds=bounds,constraints=nonlcon) # solver로 OPF 문제 풀기
 
-solution = np.multiply(sol.x, # 전압 위상각의 단위를 radian에서 degree로 변환
-                       np.array([1,1,1,1,1,180/np.pi,180/np.pi,180/np.pi,180/np.pi,180/np.pi,1,1,1,1,1,1,1,1,1,1,180/np.pi,1]))
+solution = np.round(np.multiply(sol.x, # 전압 위상각의 단위를 radian에서 degree로 변환
+                       np.array([1,1,1,1,1,180/np.pi,180/np.pi,180/np.pi,180/np.pi,180/np.pi,1,1,1,1,1,1,1,1,1,1,180/np.pi,1])),3)
 print(solution[v_bus[1]],solution[v_bus[2]],solution[v_bus[3]],solution[v_bus[4]],"\n",
       solution[del_bus[1]],solution[del_bus[2]],solution[del_bus[3]],solution[del_bus[4]],"\n",
       solution[p_bus[0]],solution[p_bus[2]],solution[p_bus[3]],"\n",

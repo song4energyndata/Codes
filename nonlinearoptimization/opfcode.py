@@ -10,6 +10,7 @@ p_bus = np.arange(10,15,1) # 인덱스 10~14는 각 bus 내 발전기의 유효�
 q_bus = np.arange(15,20,1) # 인덱스 15~19는 각 bus 내 발전기의 무효전력 (발전기가 없으면 0)
 phi_transf = 20 # 인덱스 20은 bus 3과 4 간 변압기의 위상차
 mag_transf = 21 # 인덱스 21은 bus 3과 5 간 변압기의 전압비
+# 이를테면 # x[v_bus[0]] 은 1번 bus의 전압크기를, x[del_bus[1]] 은 2번 bus의 전압위상각을 의미
 
 n_bus = 5
 
@@ -18,7 +19,7 @@ y_sh_branch = np.zeros((n_bus,n_bus),dtype=complex) # 각 전선의 shunt admitt
 y_sh_bus = np.zeros((n_bus),dtype=complex) # 각 bus의 shunt admittance
 
 y_series[0,1]= 1/(0+0.3j) # bus 1과 2를 잇는 전선의 series admittance
-y_series[0,2] = 1/(0.023+0.145j)
+y_series[0,2] = 1/(0.023+0.145j) # (i,k)가 L의 원소일 때 (k,i)는 L의 원소가 아닌 것과 같은 맥락으로 y_series[2,0] 은 설정하지 않음에 주의
 y_series[1,3] = 1/(0.006+0.032j)
 y_series[2,3] = 1/(0.02+0.26j)
 y_series[2,4] = 1/(0+0.32j)
@@ -61,26 +62,26 @@ def objfun(x):
     cost = 0.35*x[p_bus[0]] + 0.2*x[p_bus[2]] + 0.4*x[p_bus[2]]**2 + 0.3*x[p_bus[3]] + 0.5*x[p_bus[3]]**2
     return cost
 
-bounds = [(1,1),
+bounds = [(1,1), # Bus 1은 Slack Bus이므로 전압크기 1로 고정
         (0.95,1.05),
         (0.95,1.05),
         (0.95,1.05),
         (0.95,1.05),
-        (0,0),
-        (-np.pi,np.pi), # 각도의 단위가 radian임에 주의
+        (0,0), # Bus 1은 Slack Bus이므로 위상각 0으로 고정
+        (-np.pi,np.pi), # 위상각의 단위가 radian임에 주의
         (-np.pi,np.pi),
         (-np.pi,np.pi),
         (-np.pi,np.pi),
-        (-10,10),
-        (0,0),
+        (-10,10), # Bus 1은 unrestricted
+        (0,0), # Bus 2에는 발전기 없어 0으로 고정
         (0.1,0.4),
         (0.05,0.4),
-        (0,0),
-        (-10,10),
-        (0,0),
+        (0,0), # Bus 5에는 발전기 없어 0으로 고정
+        (-10,10), # Bus 1은 unrestricted
+        (0,0), # Bus 2에는 발전기 없어 0으로 고정
         (-0.2,0.2),
         (-0.2,0.2),
-        (0,0),
+        (0,0), # Bus 5에는 발전기 없어 0으로 고정
         (-np.pi/6,np.pi/6),
         (0.95,1.05)]
 
@@ -90,10 +91,10 @@ nonlcon = NonlinearConstraint(nonlconfun, np.zeros((n_bus*2,)), np.zeros((n_bus*
 
 sol = minimize(objfun,initialpoint,bounds=bounds,constraints=nonlcon) # solver로 OPF 문제 풀기
 
-solution = np.round(np.multiply(sol.x, # 전압 위상각의 단위를 radian에서 degree로 변환
-                       np.array([1,1,1,1,1,180/np.pi,180/np.pi,180/np.pi,180/np.pi,180/np.pi,1,1,1,1,1,1,1,1,1,1,180/np.pi,1])),3)
+solution = np.multiply(sol.x, # 전압 위상각의 단위를 radian에서 degree로 변환
+                       np.array([1,1,1,1,1,180/np.pi,180/np.pi,180/np.pi,180/np.pi,180/np.pi,1,1,1,1,1,1,1,1,1,1,180/np.pi,1]))
 print(solution[v_bus[1]],solution[v_bus[2]],solution[v_bus[3]],solution[v_bus[4]],"\n",
       solution[del_bus[1]],solution[del_bus[2]],solution[del_bus[3]],solution[del_bus[4]],"\n",
       solution[p_bus[0]],solution[p_bus[2]],solution[p_bus[3]],"\n",
       solution[q_bus[0]],solution[q_bus[2]],solution[q_bus[3]],"\n",
-      solution[phi_transf],solution[mag_transf])   
+      solution[phi_transf],solution[mag_transf])  

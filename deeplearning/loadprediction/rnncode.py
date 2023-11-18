@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 from tensorflow import keras
 
+### Dataset 불러오기
+
 data_train = np.loadtxt("RNN_train.txt")
 data_test = np.loadtxt("RNN_test.txt")
 
@@ -20,13 +22,15 @@ features_train = data_train[:,1:].reshape(1,-1,37) # reshape 해 줘야 rnn코�
 response_test = data_test[:,0].reshape(1,-1) / 1000
 features_test = data_test[:,1:].reshape(1,-1,37)
 
-
+### RNN layer 설정 함수
 
 model_rnn = keras.models.Sequential([
     keras.layers.SimpleRNN(n_node_firstlayer,return_sequences=True,input_shape=[None,37]),
     keras.layers.SimpleRNN(n_node_secondlayer,return_sequences=True),
     keras.layers.TimeDistributed(keras.layers.Dense(1)) # To make a sequence-to-sequence model, TimeDistributed should be used
     ])
+
+### 훈련 및 예측 실행 함수 
 
 checkpoint_cb_rnn = keras.callbacks.ModelCheckpoint("./rnn.h5",monitor='loss',save_best_only=True) # monitor까지 해 줘야 파일이 저장됨
 model_rnn.compile(loss="mse",optimizer=optimizer)
@@ -35,7 +39,7 @@ history_rnn = model_rnn.fit(features_train,response_train,epochs=n_epochs,callba
 y_fit = (model_rnn.predict(features_train) * 1000).reshape(-1)
 y_pred = (model_rnn.predict(features_test) * 1000).reshape(-1)
 
-
+### 모델 평가
 
 def adjrsq(actual,estimate,k):
     bary = np.mean(actual)

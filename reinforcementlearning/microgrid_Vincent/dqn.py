@@ -62,6 +62,7 @@ output = keras.layers.Dense(n_outputs)(hidden_dense_2)
 model = keras.Model(inputs=[input_load,input_pv,input_others], outputs=[output])
 
 
+### Policy에 따른 state 별 action 결정 함수
 
 def e_greedy_policy(state,epsilon=0): # epsilon-greedy policy
     if np.random.rand() < epsilon: # epsilon의 확률로 exploration
@@ -72,12 +73,15 @@ def e_greedy_policy(state,epsilon=0): # epsilon-greedy policy
         input_others =state[(inputlen_load+inputlen_pv)].reshape(-1,1) # Dense층의 input이므로 채널 수는 필요 없음
         Q_values = model((input_load,input_pv,input_others)) # 각 action 별 Q-value 도출
         return np.argmax(Q_values[0]) # 가장 큰 Q-value에 대응하는 action 선택      
-        # 주의: for loop 안에서 DNN에 input을 입력해 output 계산 시 model()로 해야지, model.predict()로 하면 안 됨! 메모리 누수가 발생함 (model.predict는 대량의 input data를 'model.predict를 한 번만 호출해서' 처리하는 데 특화됨, https://www.tensorflow.org/api_docs/python/tf/keras/Model#predict 참고)
+        # 주의: for loop 안에서 DNN에 input을 입력해 output 계산 시 model()로 해야지, 
+        # model.predict()로 하면 안 됨! 메모리 누수가 발생함 
+        # (model.predict는 대량의 input data를 'model.predict를 한 번만 호출해서' 처리하는 데 특화됨, https://www.tensorflow.org/api_docs/python/tf/keras/Model#predict 참고)
 
 
+### replay buffer 정의
 
 from collections import deque
-replay_buffer = deque(maxlen=buffer_size) # replay buffer 정의
+replay_buffer = deque(maxlen=buffer_size) 
 
 def sample_experiences(batch_size): # batch_size만큼의 경험들의 state들, action들, reward들, nextstate들의 리스트들을 반환
     indices = np.random.randint(len(replay_buffer), size=batch_size) # replay buffer 내 경험들 중 랜덤하게 batch_size만큼의 경험들을 지정 (인덱스 불러옴)
@@ -88,6 +92,8 @@ def sample_experiences(batch_size): # batch_size만큼의 경험들의 state들,
     return states, actions, rewards, next_states
 
 
+
+### 1 time step에 대해 action 수행
 
 def play_one_step(profile_load,profile_pv,hour,energy_batt,epsilon,training=False): # 마이크로그리드 시스템의 시간별 operation 모델링
         
@@ -133,8 +139,9 @@ def play_one_step(profile_load,profile_pv,hour,energy_batt,epsilon,training=Fals
     return energy_batt_after, reward, action # scaled 배터리 내 저장량, unscaled reward, action index 반환
 
 
+### 심층신경망 가중치 업데이트 수행
 
-def training_step(batch_size): # 심층신경망에 대해 Gradient descent 기반 가중치 업데이트 수행
+def training_step(batch_size): 
 
     states, actions, rewards, next_states = sample_experiences(batch_size)
         
@@ -160,17 +167,18 @@ def training_step(batch_size): # 심층신경망에 대해 Gradient descent 기�
     optimizer.apply_gradients(zip(grads, model.trainable_variables)) # Adam optimizer로 parameter update 수행, zip으로 gradient와 parameter pair를 맞춰줌
 
 
+### 훈련 및 검증 수행
 
 profits_test = []
 elapsedtime_test = []
 count_step_fortrain = 0
 max_return_test = -np.inf
 
-for epoch in range(100): 
+for epoch in range(100): # epoch 수 설정
     if epoch > 0: # 맨 첫 번째 epoch에서는 훈련을 시작하지 않고 buffer를 채움, 두 번째 epoch부터는 buffer에 sample들이 채워졌으므로 훈련함
         start_time = time.time()
     
-    ### Train for each epoch  
+    ### 훈련 (2년치)
     hour = 24 # 시작시점
     energy_batt = initialenergy_batt  # 배터리 내 에너지의 초기값
     
@@ -185,7 +193,7 @@ for epoch in range(100):
                 count_step_fortrain = 0
 
 
-    ### Validation for each epoch  
+    ### 검증 (1년치)  
     if epoch > 0:
         testcase_actions = []
         testcase_battenergy = []

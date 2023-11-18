@@ -66,6 +66,7 @@ elapsed_time = time.time() - start_time
 
 profit = (c*x[1])[0]
 print(profit)
+print(elapsed_time)
 
 p_send = np.array(x[1][0:t])
 p_receive = np.array(x[1][(t):(2*t)]) # Python에서는 t+1:2*t+1 이 아님에 주의
